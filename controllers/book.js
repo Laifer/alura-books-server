@@ -13,8 +13,15 @@ function getBooks(req, res) {
 function getBookById(req, res) {
     try {
         const id = req.params.id
-        const book = getBookUsingId(id)
-        res.send(book)
+
+        if(id && Number(id)){
+            const book = getBookUsingId(id)
+            res.send(book)
+        } else {
+            res.status(422)
+            res.send(`Id ${id} inválido`)
+        }
+
     } catch (error) {
         res.status(500)
         res.send(error.message)
@@ -36,9 +43,15 @@ function postBook(req, res) {
 function patchBook(req, res) {
     try {
         const id = req.params.id
-        const patchedBookData = req.body
-        modifyBook(patchedBookData, id)
-        res.send(`Livro ${id} modificado com sucesso com os seguintes dados ${JSON.stringify(patchedBookData)}`)
+
+        if(id && Number(id)){
+            const patchedBookData = req.body
+            modifyBook(patchedBookData, id)
+            res.send(`Livro ${id} modificado com sucesso com os seguintes dados ${JSON.stringify(patchedBookData)}`)
+        } else {
+            res.status(422)
+            res.send(`Id ${id} inválido`)
+        }
     } catch (error) {
         res.status(500)
         res.send(error.message)
@@ -48,8 +61,14 @@ function patchBook(req, res) {
 function deleteBook(req, res) {
     try {
         const id = req.params.id
-        removeBook(id)
-        res.send(`Livro ${id} removido com sucesso`)
+
+        if(id && Number(id)){
+            removeBook(id)
+            res.send(`Livro ${id} removido com sucesso`)
+        } else {
+            res.status(422)
+            res.send(`Id ${id} inválido`)
+        }
     } catch (error) {
         res.status(500)
         res.send(error.message)
