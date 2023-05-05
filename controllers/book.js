@@ -31,7 +31,11 @@ function getBookById(req, res) {
 function postBook(req, res) {
     try {
         const newBook = req.body
-        if(newBook.hasOwnProperty('name') && newBook.hasOwnProperty('id') && (Object.getOwnPropertyNames(newBook)).length < 3)
+        if(
+            newBook.hasOwnProperty('name') 
+            && newBook.hasOwnProperty('id') 
+            && (Object.getOwnPropertyNames(newBook)).length < 3
+        )
         {
             addBook(newBook)
             res.status(201)
