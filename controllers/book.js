@@ -31,9 +31,15 @@ function getBookById(req, res) {
 function postBook(req, res) {
     try {
         const newBook = req.body
-        addBook(newBook)
-        res.status(201)
-        res.send(`Livro ${JSON.stringify(newBook)} inserido com sucesso`)
+        if(newBook.hasOwnProperty('name') && newBook.hasOwnProperty('id') && (Object.getOwnPropertyNames(newBook)).length < 3)
+        {
+            addBook(newBook)
+            res.status(201)
+            res.send(`Livro ${JSON.stringify(newBook)} inserido com sucesso`)
+        } else {
+            res.status(422)
+            res.send(`Book ${JSON.stringify(newBook)} sent doesn't have the same properties from books of the application, which are: 'name' and 'id'`)
+        }
     } catch (error) {
         res.status(500)
         res.send(error.message)
