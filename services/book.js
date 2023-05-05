@@ -1,9 +1,18 @@
 const fs = require('fs')
 
-function gettAllBooks() {
+function getAllBooks() {
     return JSON.parse(fs.readFileSync('books.json'))
 }
 
+function getBookUsingId(id) {
+    const books = JSON.parse(fs.readFileSync('books.json'))
+
+    const filteredBook = books.filter( book => book.id === id )[0]
+
+    return filteredBook
+}
+
 module.exports = {
-    gettAllBooks
+    getAllBooks, 
+    getBookUsingId
 }
