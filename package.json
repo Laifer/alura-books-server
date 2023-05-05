@@ -1,0 +1,12 @@
+{
+  "name": "alura-books-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Laifer/alura-books-server.git",
+  "author": "Laifer <gabriel.alves@cotefacil.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
+  }
+}
