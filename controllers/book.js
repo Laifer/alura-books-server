@@ -1,4 +1,4 @@
-const { getAllBooks, getBookUsingId, addBook, modifyBook } = require("../services/book")
+const { getAllBooks, getBookUsingId, addBook, modifyBook, removeBook } = require("../services/book")
 
 function getBooks(req, res) {
     try {
@@ -45,9 +45,21 @@ function patchBook(req, res) {
     }
 }
 
+function deleteBook(req, res) {
+    try {
+        const id = req.params.id
+        removeBook(id)
+        res.send(`Livro ${id} removido com sucesso`)
+    } catch (error) {
+        res.status(500)
+        res.send(error.message)
+    }
+}
+
 module.exports = {
     getBooks, 
     getBookById, 
     postBook,
-    patchBook
+    patchBook,
+    deleteBook
 }
