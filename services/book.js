@@ -12,7 +12,16 @@ function getBookUsingId(id) {
     return filteredBook
 }
 
+function addBook(newBook) {
+    const books = JSON.parse(fs.readFileSync('books.json'))
+
+    const newListOfBooks = [...books, newBook]
+
+    fs.writeFileSync('books.json', JSON.stringify(newListOfBooks))
+}
+
 module.exports = {
     getAllBooks, 
-    getBookUsingId
+    getBookUsingId,
+    addBook
 }
